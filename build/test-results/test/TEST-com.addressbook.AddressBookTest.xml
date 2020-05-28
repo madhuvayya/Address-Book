@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.addressbook.AddressBookTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-05-28T02:54:44" hostname="MADHU" time="0.005">
+  <properties/>
+  <testcase name="givenPersonDetails_whenAddedToList_shouldReturnCorrectList" classname="com.addressbook.AddressBookTest" time="0.003"/>
+  <testcase name="givenPersonDetails_whenAddedToList_shouldReturnAddedSize" classname="com.addressbook.AddressBookTest" time="0.0"/>
+  <testcase name="removdPersonDetails_whenAddedToList_shouldReturnAddedSize" classname="com.addressbook.AddressBookTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
