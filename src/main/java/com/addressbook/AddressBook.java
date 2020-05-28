@@ -14,12 +14,21 @@ public class AddressBook {
     }
 
 
-    public boolean search(String firstName) {
-        for (int i=0;i<addressBookList.size();i++) {
-            String name = addressBookList.get(i).firstName;
-            if (name.equals(firstName))
+    public boolean search(String searchedFirstName) {
+        for (Person person : addressBookList) {
+            String name = person.firstName;
+            if (name.equals(searchedFirstName))
                 return true;
         }
         return false;
+    }
+
+    public int getIndex(String searchedName) {
+        for (int i=0;i<addressBookList.size();i++) {
+            String firstName = addressBookList.get(i).firstName;
+            if (firstName.equals(searchedName))
+                return i;
+        }
+        return -1;
     }
 }
