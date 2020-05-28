@@ -1,7 +1,6 @@
 package com.addressbook;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class AddressBook {
@@ -14,4 +13,13 @@ public class AddressBook {
         addressBookList.add(person);
     }
 
+
+    public boolean search(String firstName) {
+        for (int i=0;i<addressBookList.size();i++) {
+            String name = addressBookList.get(i).firstName;
+            if (name.equals(firstName))
+                return true;
+        }
+        return false;
+    }
 }
