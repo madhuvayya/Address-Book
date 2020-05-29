@@ -5,7 +5,7 @@ public class AddressBookException extends RuntimeException {
     enum ExceptionType {
         ENTERED_EMPTY,
         EXISTING,
-        NULL
+        NOT_EXISTING
     }
 
     ExceptionType type;

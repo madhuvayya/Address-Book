@@ -56,7 +56,6 @@ public class AddressBookTest {
         } catch (AddressBookException e){
             Assert.assertEquals(AddressBookException.ExceptionType.EXISTING,e.type);
         }
-
     }
 
     @Test
@@ -116,7 +115,7 @@ public class AddressBookTest {
 
 
     @Test
-    public void givenPersonsDetails_whenSearchedForPersonDetNotAdded_shouldReturnNegativeValue() {
+    public void givenPersonsDetails_whenSearchedForPersonDataNotExisting_shouldReturnNegativeValue() {
         addressBook.add("ramesh","k","ram nagar","hyderabad","Telangana",
                 "536872","9999999999");
         addressBook.add("rajesh","mn","subhash nagar","hyderabad","Telangana",
@@ -127,4 +126,33 @@ public class AddressBookTest {
         Assert.assertEquals(-1,result);
     }
 
+    @Test
+    public void givenPersonsDetailsAndEditSomeDetails_whenDetailsEdited_shouldReturnEditedValues() {
+        addressBook.add("ramesh","k","ram nagar","hyderabad","Telangana",
+                "536872","9999999999");
+        addressBook.add("rajesh","mn","subhash nagar","hyderabad","Telangana",
+                "513867","1111111111");
+        addressBook.add("naresh","d","Nizampet","hyderabad","Telangana",
+                "512365","8888888888");
+        addressBook.edit("1111111111","Nizampet","Secunderabad","Telangana","523648",
+                "7777777777");
+        String address = addressBook.addressBook.get(1).getAddress();
+        Assert.assertEquals("Nizampet",address);
+        int result = addressBook.getIndex("7777777777");
+        Assert.assertEquals(1,result);
+    }
+
+    @Test
+    public void givenPersonsDetailsAndEditSomeDetails_whenDetailsEdited_shouldNotReturnPastValues() {
+        addressBook.add("ramesh","k","ram nagar","hyderabad","Telangana",
+                "536872","9999999999");
+        addressBook.add("rajesh","mn","subhash nagar","hyderabad","Telangana",
+                "513867","1111111111");
+        addressBook.add("naresh","d","Nizampet","hyderabad","Telangana",
+                "512365","8888888888");
+        addressBook.edit("1111111111","Nizampet","Secunderabad","Telangana","523648",
+                "7777777777");
+        String city = addressBook.addressBook.get(1).getCity();
+        Assert.assertNotEquals("hyderabad",city);
+    }
 }
