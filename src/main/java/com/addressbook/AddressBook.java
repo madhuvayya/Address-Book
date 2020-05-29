@@ -49,4 +49,13 @@ public class AddressBook {
         addressBook.get(index).setZip(zip);
         addressBook.get(index).setPhoneNumber(newPhoneNumber);
     }
+
+    public void delete(String phoneNumber) {
+        if(phoneNumber == "")
+            throw new AddressBookException(AddressBookException.ExceptionType.ENTERED_EMPTY,"entered empty");
+        int index = this.getIndex(phoneNumber);
+        if(index == -1)
+            throw new AddressBookException(AddressBookException.ExceptionType.NOT_EXISTING,"Data not existing");
+        addressBook.remove(index);
+    }
 }

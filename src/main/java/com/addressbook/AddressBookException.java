@@ -14,6 +14,4 @@ public class AddressBookException extends RuntimeException {
         super(message);
         this.type = type;
     }
-
-
 }

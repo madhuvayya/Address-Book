@@ -155,4 +155,17 @@ public class AddressBookTest {
         String city = addressBook.addressBook.get(1).getCity();
         Assert.assertNotEquals("hyderabad",city);
     }
+
+    @Test
+    public void givenPersonsDetails_whenDeleted_shouldReturnNegativeIndexValue() {
+        addressBook.add("ramesh","k","ram nagar","hyderabad","Telangana",
+                "536872","9999999999");
+        addressBook.add("rajesh","mn","subhash nagar","hyderabad","Telangana",
+                "513867","1111111111");
+        addressBook.add("naresh","d","Nizampet","hyderabad","Telangana",
+                "512365","8888888888");
+        addressBook.delete("9999999999");
+        boolean result = addressBook.search("9999999999");
+        Assert.assertEquals(false,result);
+    }
 }
