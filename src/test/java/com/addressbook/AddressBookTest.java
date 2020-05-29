@@ -12,7 +12,7 @@ public class AddressBookTest {
     public void givenPersonsDetails_whenAddedToList_shouldReturnCorrectList() {
         addressBook.add("ramesh","k","ram nagar","hyderabad","Telangana",
                 "456132","1111111111");
-        int size = addressBook.addressBook.size();
+        int size = addressBook.personsList.size();
         Assert.assertEquals(1,size);
     }
 
@@ -22,7 +22,7 @@ public class AddressBookTest {
                 "456132","1111111111");
         addressBook.add("rakesh","n","pvp colony","hyderabad","Telangana",
                 "461164","8888888888");
-        int size = addressBook.addressBook.size();
+        int size = addressBook.personsList.size();
         Assert.assertEquals(2,size);
     }
 
@@ -66,8 +66,8 @@ public class AddressBookTest {
                 "456132","1111111111");
         addressBook.add("suresh","k","NTR nagar","vijayawada","Andra pradhesh",
                 "512631","7777777777");
-        addressBook.addressBook.remove(1);
-        int size = addressBook.addressBook.size();
+        addressBook.personsList.remove(1);
+        int size = addressBook.personsList.size();
         Assert.assertNotEquals(2,size);
     }
 
@@ -138,7 +138,7 @@ public class AddressBookTest {
                 "512365","8888888888");
         addressBook.edit("1111111111","Nizampet","Secunderabad","Telangana","523648",
                 "7777777777");
-        String address = addressBook.addressBook.get(1).getAddress();
+        String address = addressBook.personsList.get(1).getAddress();
         Assert.assertEquals("Nizampet",address);
         int result = addressBook.getIndex("7777777777");
         Assert.assertEquals(1,result);
@@ -154,7 +154,7 @@ public class AddressBookTest {
                 "512365","8888888888");
         addressBook.edit("1111111111","Nizampet","Secunderabad","Telangana","523648",
                 "7777777777");
-        String city = addressBook.addressBook.get(1).getCity();
+        String city = addressBook.personsList.get(1).getCity();
         Assert.assertNotEquals("hyderabad",city);
     }
 

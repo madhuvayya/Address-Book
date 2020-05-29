@@ -12,7 +12,7 @@ public class AddressBook {
         ZIP
     }
 
-    List<Person> addressBook = new ArrayList<>();
+    List<Person> personsList = new ArrayList<>();
 
     public void add(String firstName, String lastName, String address, String city, String state, String zip,
                     String phoneNumber) {
@@ -23,11 +23,11 @@ public class AddressBook {
         if(index != -1)
             throw new AddressBookException(AddressBookException.ExceptionType.EXISTING,"Entered already existing data");
         Person person = new Person(firstName, lastName, address, city, state, zip, phoneNumber);
-        addressBook.add(person);
+        personsList.add(person);
     }
 
     public boolean search(String phoneNumber) {
-        for (Person person : addressBook) {
+        for (Person person : personsList) {
             String name = person.phoneNumber;
             if (name.equals(phoneNumber))
                 return true;
@@ -36,8 +36,8 @@ public class AddressBook {
     }
 
     public int getIndex(String phoneNumber) {
-        for (int i = 0; i< addressBook.size(); i++) {
-            String firstName = addressBook.get(i).phoneNumber;
+        for (int i = 0; i< personsList.size(); i++) {
+            String firstName = personsList.get(i).phoneNumber;
             if (firstName.equals(phoneNumber))
                 return i;
         }
@@ -50,11 +50,11 @@ public class AddressBook {
         int index = this.getIndex(oldPhoneNumber);
         if(index == -1)
             throw new AddressBookException(AddressBookException.ExceptionType.NOT_EXISTING,"Not existing data");
-        addressBook.get(index).setAddress(address);
-        addressBook.get(index).setCity(city);
-        addressBook.get(index).setState(state);
-        addressBook.get(index).setZip(zip);
-        addressBook.get(index).setPhoneNumber(newPhoneNumber);
+        personsList.get(index).setAddress(address);
+        personsList.get(index).setCity(city);
+        personsList.get(index).setState(state);
+        personsList.get(index).setZip(zip);
+        personsList.get(index).setPhoneNumber(newPhoneNumber);
     }
 
     public void delete(String phoneNumber) {
@@ -63,19 +63,19 @@ public class AddressBook {
         int index = this.getIndex(phoneNumber);
         if(index == -1)
             throw new AddressBookException(AddressBookException.ExceptionType.NOT_EXISTING,"Data not existing");
-        addressBook.remove(index);
+        personsList.remove(index);
     }
 
     public List<Person> sortPersonData(Comparator<Person> comparator) {
-        return addressBook.stream()
+        return personsList.stream()
                 .sorted(comparator)
                 .collect(Collectors.toList());
     }
 
     public void print() {
-        if(addressBook.size() == 0)
+        if(personsList.size() == 0)
             throw new AddressBookException(AddressBookException.ExceptionType.BOOK_IS_EMPTY,"Book is empty");
-        for (Person person:addressBook) {
+        for (Person person: personsList) {
             person.toString();
         }
     }

@@ -6,7 +6,8 @@ public class AddressBookException extends RuntimeException {
         ENTERED_EMPTY,
         EXISTING,
         NOT_EXISTING,
-        BOOK_IS_EMPTY
+        BOOK_IS_EMPTY,
+        FILE_NOT_CREATED
     }
 
     ExceptionType type;
