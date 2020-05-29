@@ -71,4 +71,12 @@ public class AddressBook {
                 .sorted(comparator)
                 .collect(Collectors.toList());
     }
+
+    public void print() {
+        if(addressBook.size() == 0)
+            throw new AddressBookException(AddressBookException.ExceptionType.BOOK_IS_EMPTY,"Book is empty");
+        for (Person person:addressBook) {
+            person.toString();
+        }
+    }
 }
