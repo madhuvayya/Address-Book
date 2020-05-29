@@ -33,7 +33,7 @@ public class PersonTest {
     public void givenPersonDetails_whenPersonObjectCreated_shouldNotEqualToActualPhone() {
         Person person = new Person("", "abcv", "mvp nagar", "vijawada",
                 "Andhra Pradhesh", "11111111", "8888888888");
-        String phone = person.getPhone();
+        String phone = person.getPhoneNumber();
         Assert.assertNotEquals("7777777",phone);
     }
 }

@@ -25,6 +25,41 @@ public class AddressBookTest {
     }
 
     @Test
+    public void givenPersonDetailsWithAllEmptyFields_whenPassedToAddMethod_shouldThrowException() {
+        try {
+            addressBook.add("", "", "", "", "",
+                    "", "");
+        } catch (AddressBookException e){
+            Assert.assertEquals(AddressBookException.ExceptionType.ENTERED_EMPTY,e.type);
+        }
+    }
+
+    @Test
+    public void givenPersonDetailsWithOneEmptyField_whenPassedToAddMethod_shouldThrowException() {
+        try {
+            addressBook.add("", "k", "ram nagar", "hyderabad", "Telangana",
+                    "536872", "9999999999");
+        } catch (AddressBookException e){
+            Assert.assertEquals(AddressBookException.ExceptionType.ENTERED_EMPTY,e.type);
+        }
+    }
+
+    @Test
+    public void givenPersonDetails_whenSameMobileNumberGivenByOtherPerson_shouldThrowAnException() {
+        addressBook.add("ramesh","c","ram nagar","hyderabad","Telangana",
+                "456132","1111111111");
+        addressBook.add("suresh","k","NTR nagar","vijayawada","Andra pradhesh",
+                "512631","7777777777");
+        try {
+            addressBook.add("mahesh", "e", "ram nagar", "hyderabad", "Telangana",
+                    "536872", "1111111111");
+        } catch (AddressBookException e){
+            Assert.assertEquals(AddressBookException.ExceptionType.EXISTING,e.type);
+        }
+
+    }
+
+    @Test
     public void removedPersonDetails_whenRemovedFromList_shouldReturnAddedSize() {
         addressBook.add("ramesh","c","ram nagar","hyderabad","Telangana",
                 "456132","1111111111");
@@ -41,7 +76,7 @@ public class AddressBookTest {
                 "456132","1111111111");
         addressBook.add("ramesh","m","kalyan nagar","chennai","Tamilnadu",
                 "513712","5555555555");
-        boolean result = addressBook.search("ramesh");
+        boolean result = addressBook.search("5555555555");
         Assert.assertTrue(result);
     }
 
@@ -51,7 +86,7 @@ public class AddressBookTest {
                 "456132","1111111111");
         addressBook.add("ramesh","Nj","prakash nagar","hyderabad","Telangana",
                 "6456221","2222222222");
-        boolean result = addressBook.search("mahesh");
+        boolean result = addressBook.search("3333333333");
         Assert.assertFalse(result);
     }
 
@@ -63,7 +98,7 @@ public class AddressBookTest {
                 "513867","1111111111");
         addressBook.add("naresh","d","Nizampet","hyderabad","Telangana",
                 "512365","8888888888");
-        int result = addressBook.getIndex("rajesh");
+        int result = addressBook.getIndex("1111111111");
         Assert.assertEquals(1,result);
     }
 
@@ -75,13 +110,13 @@ public class AddressBookTest {
                 "513867","1111111111");
         addressBook.add("naresh","d","Nizampet","hyderabad","Telangana",
                 "512365","8888888888");
-        int result = addressBook.getIndex("Jayanth");
+        int result = addressBook.getIndex("7777777777");
         Assert.assertNotEquals(1,result);
     }
 
 
     @Test
-    public void givenPersonsDetails_whenSearchedForPersonDetNotAdded_shouldReturnEditedValues() {
+    public void givenPersonsDetails_whenSearchedForPersonDetNotAdded_shouldReturnNegativeValue() {
         addressBook.add("ramesh","k","ram nagar","hyderabad","Telangana",
                 "536872","9999999999");
         addressBook.add("rajesh","mn","subhash nagar","hyderabad","Telangana",
@@ -92,23 +127,4 @@ public class AddressBookTest {
         Assert.assertEquals(-1,result);
     }
 
-    @Test
-    public void givenPersonDetailsWithOneEmptyField_whenPassedToAddMethod_shouldReturnException() {
-        try {
-            addressBook.add("", "k", "ram nagar", "hyderabad", "Telangana",
-                    "536872", "9999999999");
-        } catch (AddressBookException e){
-            Assert.assertEquals(AddressBookException.ExceptionType.ENTERED_EMPTY,e.type);
-        }
-    }
-
-    @Test
-    public void givenPersonDetailsWithAllEmptyFields_whenPassedToAddMethod_shouldReturnException() {
-        try {
-            addressBook.add("", "", "", "", "",
-                    "", "");
-        } catch (AddressBookException e){
-            Assert.assertEquals(AddressBookException.ExceptionType.ENTERED_EMPTY,e.type);
-        }
-    }
 }

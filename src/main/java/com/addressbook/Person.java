@@ -8,7 +8,7 @@ public class Person {
     String city;
     String state;
     String zip;
-    String phone;
+    String phoneNumber;
 
     public Person() {
     }
@@ -21,7 +21,7 @@ public class Person {
         this.city = city;
         this.state = state;
         this.zip = zip;
-        this.phone = phone;
+        this.phoneNumber = phone;
     }
 
     public String getFirstName() {
@@ -48,7 +48,7 @@ public class Person {
         return zip;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }
