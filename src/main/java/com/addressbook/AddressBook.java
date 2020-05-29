@@ -1,11 +1,15 @@
 package com.addressbook;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
     List<Person> addressBook = new ArrayList<>();
+
+    Comparator<Person> comparator = Comparator.comparing(person -> person.firstName);
 
     public void add(String firstName, String lastName, String address, String city, String state, String zip,
                     String phoneNumber) {
@@ -57,5 +61,12 @@ public class AddressBook {
         if(index == -1)
             throw new AddressBookException(AddressBookException.ExceptionType.NOT_EXISTING,"Data not existing");
         addressBook.remove(index);
+    }
+
+    public List<Person> sortPersonData() {
+        List<Person> sortedAddressBookData = addressBook.stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
+        return sortedAddressBookData;
     }
 }
