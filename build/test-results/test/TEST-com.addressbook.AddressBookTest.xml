@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.addressbook.AddressBookTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2020-05-29T04:00:44" hostname="MADHU" time="0.019">
+<testsuite name="com.addressbook.AddressBookTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-05-29T04:22:55" hostname="MADHU" time="0.031">
   <properties/>
-  <testcase name="givenPersonsDetailsAndIndexValueSearched_whenIndexValueFound_shouldReturnIndex" classname="com.addressbook.AddressBookTest" time="0.002"/>
+  <testcase name="givenPersonsDetails_whenSortedByZip_shouldReturnDataInSortedOrder" classname="com.addressbook.AddressBookTest" time="0.022"/>
+  <testcase name="givenPersonsDetailsAndIndexValueSearched_whenIndexValueFound_shouldReturnIndex" classname="com.addressbook.AddressBookTest" time="0.0"/>
   <testcase name="givenPersonsDetailsAndSearched_whenFound_shouldReturnTrue" classname="com.addressbook.AddressBookTest" time="0.0"/>
-  <testcase name="givenPersonsDetails_whenSortedByFirstName_shouldReturnDataInSortedOrder" classname="com.addressbook.AddressBookTest" time="0.009"/>
+  <testcase name="givenPersonsDetails_whenSortedByFirstName_shouldReturnDataInSortedOrder" classname="com.addressbook.AddressBookTest" time="0.0"/>
   <testcase name="givenPersonsDetailsAndIndexValueSearched_whenIndexNotFound_shouldReturnNegative" classname="com.addressbook.AddressBookTest" time="0.0"/>
-  <testcase name="givenPersonDetailsWithOneEmptyField_whenPassedToAddMethod_shouldThrowException" classname="com.addressbook.AddressBookTest" time="0.001"/>
-  <testcase name="givenPersonsDetails_whenAddedToList_shouldReturnAddedSize" classname="com.addressbook.AddressBookTest" time="0.001"/>
-  <testcase name="givenPersonDetails_whenSameMobileNumberGivenByOtherPerson_shouldThrowAnException" classname="com.addressbook.AddressBookTest" time="0.0"/>
+  <testcase name="givenPersonDetailsWithOneEmptyField_whenPassedToAddMethod_shouldThrowException" classname="com.addressbook.AddressBookTest" time="0.002"/>
+  <testcase name="givenPersonsDetails_whenAddedToList_shouldReturnAddedSize" classname="com.addressbook.AddressBookTest" time="0.0"/>
+  <testcase name="givenPersonDetails_whenSameMobileNumberGivenByOtherPerson_shouldThrowAnException" classname="com.addressbook.AddressBookTest" time="0.001"/>
   <testcase name="givenPersonsDetailsAndSearched_whenNotFound_shouldReturnFalse" classname="com.addressbook.AddressBookTest" time="0.0"/>
   <testcase name="givenPersonsDetails_whenDeleted_shouldReturnNegativeIndexValue" classname="com.addressbook.AddressBookTest" time="0.0"/>
   <testcase name="givenPersonsDetailsAndEditSomeDetails_whenDetailsEdited_shouldReturnEditedValues" classname="com.addressbook.AddressBookTest" time="0.0"/>
   <testcase name="givenPersonsDetails_whenSearchedForPersonDataNotExisting_shouldReturnNegativeValue" classname="com.addressbook.AddressBookTest" time="0.0"/>
-  <testcase name="givenPersonsDetails_whenAddedToList_shouldReturnCorrectList" classname="com.addressbook.AddressBookTest" time="0.001"/>
+  <testcase name="givenPersonsDetails_whenAddedToList_shouldReturnCorrectList" classname="com.addressbook.AddressBookTest" time="0.0"/>
   <testcase name="givenPersonsDetailsAndEditSomeDetails_whenDetailsEdited_shouldNotReturnPastValues" classname="com.addressbook.AddressBookTest" time="0.0"/>
   <testcase name="givenPersonDetailsWithAllEmptyFields_whenPassedToAddMethod_shouldThrowException" classname="com.addressbook.AddressBookTest" time="0.0"/>
-  <testcase name="removedPersonDetails_whenRemovedFromList_shouldReturnAddedSize" classname="com.addressbook.AddressBookTest" time="0.0"/>
+  <testcase name="removedPersonDetails_whenRemovedFromList_shouldReturnAddedSize" classname="com.addressbook.AddressBookTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

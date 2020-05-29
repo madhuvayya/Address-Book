@@ -168,7 +168,7 @@ public class AddressBookTest {
                 "512365","8888888888");
         addressBook.delete("9999999999");
         boolean result = addressBook.search("9999999999");
-        Assert.assertEquals(false,result);
+        Assert.assertFalse(result);
     }
 
     @Test
@@ -179,8 +179,22 @@ public class AddressBookTest {
                 "513867","1111111111");
         addressBook.add("naresh","d","Nizampet","hyderabad","Telangana",
                 "512365","8888888888");
-        List<Person> sortPersonData = addressBook.sortPersonData();
-        Assert.assertEquals("naresh", sortPersonData.get(0).firstName);
+        List<Person> sortPersonDataAccordingToFirstName = addressBook.sortPersonData(new Comparators()
+                .getComparator(AddressBook.CompareBy.FIRST_NAME));
+        Assert.assertEquals("naresh", sortPersonDataAccordingToFirstName.get(0).firstName);
+    }
+
+    @Test
+    public void givenPersonsDetails_whenSortedByZip_shouldReturnDataInSortedOrder() {
+        addressBook.add("ramesh","k","ram nagar","hyderabad","Telangana",
+                "536872","9999999999");
+        addressBook.add("rajesh","mn","subhash nagar","hyderabad","Telangana",
+                "513867","1111111111");
+        addressBook.add("naresh","d","Nizampet","hyderabad","Telangana",
+                "512365","8888888888");
+        List<Person> sortPersonDataAccordingToZip = addressBook.sortPersonData(new Comparators()
+                .getComparator(AddressBook.CompareBy.ZIP));
+        Assert.assertEquals("536872", sortPersonDataAccordingToZip.get(2).zip);
     }
 
 }

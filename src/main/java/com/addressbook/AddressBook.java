@@ -7,9 +7,12 @@ import java.util.stream.Collectors;
 
 public class AddressBook {
 
-    List<Person> addressBook = new ArrayList<>();
+    enum CompareBy{
+        FIRST_NAME,
+        ZIP
+    }
 
-    Comparator<Person> comparator = Comparator.comparing(person -> person.firstName);
+    List<Person> addressBook = new ArrayList<>();
 
     public void add(String firstName, String lastName, String address, String city, String state, String zip,
                     String phoneNumber) {
@@ -63,10 +66,9 @@ public class AddressBook {
         addressBook.remove(index);
     }
 
-    public List<Person> sortPersonData() {
-        List<Person> sortedAddressBookData = addressBook.stream()
+    public List<Person> sortPersonData(Comparator<Person> comparator) {
+        return addressBook.stream()
                 .sorted(comparator)
                 .collect(Collectors.toList());
-        return sortedAddressBookData;
     }
 }
