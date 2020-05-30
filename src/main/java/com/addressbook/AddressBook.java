@@ -13,8 +13,9 @@ public class AddressBook {
     }
 
     List<Person> personsList = new ArrayList<>();
+    FileOperations fileOperations = new FileOperations();
 
-    public void add(String firstName, String lastName, String address, String city, String state, String zip,
+    public void add(String addressBookName,String firstName, String lastName, String address, String city, String state, String zip,
                     String phoneNumber) {
         if(firstName == "" || lastName == "" || address == "" || city == "" || state == ""|| zip == "" ||
                 phoneNumber == "")
@@ -23,6 +24,7 @@ public class AddressBook {
         if(index != -1)
             throw new AddressBookException(AddressBookException.ExceptionType.EXISTING,"Entered already existing data");
         Person person = new Person(firstName, lastName, address, city, state, zip, phoneNumber);
+        fileOperations.writeInFile(addressBookName,person);
         personsList.add(person);
     }
 
