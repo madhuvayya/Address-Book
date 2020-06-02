@@ -14,6 +14,13 @@ import java.util.List;
 
 public class FileOperations {
 
+    public boolean isEmpty(String fileName){
+        String filePath = this.getFilePath(fileName);
+        File file = new File(filePath);
+        return file.length() == 0;
+
+    }
+
     public String getFilePath(String fileName) throws AddressBookException {
         try {
             if (fileName.equals(""))
@@ -58,5 +65,10 @@ public class FileOperations {
         } catch (IOException e) {
             throw new AddressBookException(AddressBookException.ExceptionType.FILE_PROBLEM,"Invalid File");
         }
+    }
+
+    public void deleteFile(String fileName) {
+        File file = new File(this.getFilePath(fileName));
+        file.delete();
     }
 }

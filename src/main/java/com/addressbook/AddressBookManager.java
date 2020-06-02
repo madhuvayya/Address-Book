@@ -24,17 +24,18 @@ public class AddressBookManager {
         boolean isCreated = false;
         try {
             isCreated = newFile.createNewFile();
+            addressBooks.put(addressBookName,new AddressBook());
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
     }
 
-    public void open(String fileName) {
-        List personList = fileOperations.loadDataFromFile(fileName);
-    }
-
     public void add(String addressBookName,String firstName, String lastName, String address, String city, String state,
                     String zip, String mobileNumber) throws AddressBookException {
         addressBooks.get(addressBook).add(addressBookName,firstName,lastName,address,city,state,zip,mobileNumber);
+    }
+
+    public void deleteAddressBook(String addressBook){
+        fileOperations.deleteFile(addressBook);
     }
 }

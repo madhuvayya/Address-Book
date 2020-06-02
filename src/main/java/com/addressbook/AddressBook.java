@@ -1,19 +1,12 @@
 package com.addressbook;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AddressBook {
 
     List<Person> personsList = new ArrayList<>();
     FileOperations fileOperations = new FileOperations();
-
-//    public AddressBook(String addressBook) {
-//        this.addressBook = addressBook;
-//        personsList = new ArrayList<>();
-//    }
 
     enum CompareBy{
         FIRST_NAME,
@@ -36,11 +29,13 @@ public class AddressBook {
     }
 
     public boolean search(String addressBookName,String phoneNumber) {
-        personsList = fileOperations.loadDataFromFile(addressBookName);
-        for (Person person : personsList) {
-            String name = person.phoneNumber;
-            if (name.equals(phoneNumber))
-                return true;
+        if(!fileOperations.isEmpty(addressBookName)) {
+            personsList = fileOperations.loadDataFromFile(addressBookName);
+            for (Person person : personsList) {
+                String name = person.phoneNumber;
+                if (name.equals(phoneNumber))
+                    return true;
+            }
         }
         return false;
     }
