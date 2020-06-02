@@ -1,12 +1,31 @@
 package com.addressbook;
 
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
+import java.util.Arrays;
 import java.util.List;
 
+@RunWith(MockitoJUnitRunner.class)
 public class AddressBookTest {
-    AddressBook addressBook = new AddressBook();
+
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
+
+    @Mock
+    public FileOperations fileOperations;
+
+    @InjectMocks
+    public AddressBook addressBook;
 
     @Test
     public void givenPersonsDetails_whenAddedToList_shouldReturnCorrectList() {
@@ -70,6 +89,13 @@ public class AddressBookTest {
 
     @Test
     public void givenPersonsDetails_whenSortedByZip_shouldReturnDataInSortedOrder() {
+        List<Person> sortPersonDataAccordingToZip = addressBook.sortPersonData(new Comparators()
+                .getComparator(AddressBook.CompareBy.ZIP),"AddressBook1");
+        Assert.assertEquals("500008", sortPersonDataAccordingToZip.get(0).zip);
+    }
+
+    @Test
+    public void givenPersonsDetails_whenPrintInvoked_shouldReturnDataInSortedOrder() {
         List<Person> sortPersonDataAccordingToZip = addressBook.sortPersonData(new Comparators()
                 .getComparator(AddressBook.CompareBy.ZIP),"AddressBook1");
         Assert.assertEquals("500008", sortPersonDataAccordingToZip.get(0).zip);

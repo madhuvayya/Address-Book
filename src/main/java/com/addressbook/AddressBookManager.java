@@ -34,16 +34,11 @@ public class AddressBookManager {
         fileOperations.deleteFile(addressBook);
     }
 
-    public void openAddressBook(String addressBookName){
-        fileOperations.loadDataFromFile(addressBookName);
-    }
-
     public int loadAddressBooks(){
         return fileOperations.loadFiles();
     }
 
-    public List<AddressBook> sortPersonDetails(String addressBook){
-
-        return addressBookList;
+    public void printBookEntries(String addressBookName){
+        addressBook.print(addressBookName);
     }
 }
