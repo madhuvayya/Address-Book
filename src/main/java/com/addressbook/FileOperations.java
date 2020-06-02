@@ -15,20 +15,14 @@ import java.util.List;
 public class FileOperations {
 
     public boolean isEmpty(String fileName){
-        String filePath = this.getFilePath(fileName);
-        File file = new File(filePath);
+        File file = new File(this.getFilePath(fileName));
         return file.length() == 0;
-
     }
 
-    public String getFilePath(String fileName) throws AddressBookException {
-        try {
-            if (fileName.equals(""))
-                throw new AddressBookException( AddressBookException.ExceptionType.ENTERED_EMPTY,"Entered Empty");
-                return  "./src/main/resources/"+fileName+".json";
-        } catch (NullPointerException  e) {
-            throw new AddressBookException(AddressBookException.ExceptionType.ENTERED_NULL,"Entered Null");
-        }
+    private String getFilePath(String fileName) throws AddressBookException {
+        if (fileName.equals(""))
+            throw new AddressBookException( AddressBookException.ExceptionType.ENTERED_EMPTY,"Entered Empty");
+        return  "./src/main/resources/"+fileName+".json";
     }
 
     public boolean isItExist(String fileName) throws AddressBookException {
@@ -42,12 +36,9 @@ public class FileOperations {
             throw new AddressBookException( AddressBookException.ExceptionType.ENTERED_EMPTY,"Entered Empty");
         if(!this.isItExist(fileName))
             throw new AddressBookException(AddressBookException.ExceptionType.NOT_EXISTING,"File not Exists");
-        try {
-            String filePath = getFilePath(fileName);
+        try (Reader reader = Files.newBufferedReader(Paths.get(this.getFilePath(fileName)))) {
             Gson gson = new Gson();
-            Reader reader = Files.newBufferedReader(Paths.get(filePath));
             data.addAll(Arrays.asList(gson.fromJson(reader, Person[].class)));
-            reader.close();
         } catch (IOException | RuntimeException e) {
             throw  new AddressBookException(AddressBookException.ExceptionType.FILE_PROBLEM,"Invalid File");
         }
@@ -55,13 +46,9 @@ public class FileOperations {
     }
 
     public void writeInFile(String fileName,Object object) throws AddressBookException {
-        try {
-            String filePath = getFilePath(fileName);
+        try(FileWriter writer = new FileWriter(this.getFilePath(fileName))) {
             Gson gson = new Gson();
-            String json = gson.toJson(object);
-            FileWriter writer = new FileWriter(filePath);
-            writer.write(json);
-            writer.close();
+            writer.write( gson.toJson(object) );
         } catch (IOException e) {
             throw new AddressBookException(AddressBookException.ExceptionType.FILE_PROBLEM,"Invalid File");
         }

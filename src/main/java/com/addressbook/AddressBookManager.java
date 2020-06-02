@@ -34,6 +34,10 @@ public class AddressBookManager {
         fileOperations.deleteFile(addressBook);
     }
 
+    public void deletePersonDetails(String addressBookName,String phoneNumber){
+        addressBook.delete(addressBookName,phoneNumber);
+    }
+
     public int loadAddressBooks(){
         return fileOperations.loadFiles();
     }

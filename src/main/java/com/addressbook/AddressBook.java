@@ -32,8 +32,7 @@ public class AddressBook {
         if(!fileOperations.isEmpty(addressBookName)) {
             personsList = fileOperations.loadDataFromFile(addressBookName);
             for (Person person : personsList) {
-                String name = person.phoneNumber;
-                if (name.equals(phoneNumber))
+                if (person.phoneNumber.equals(phoneNumber))
                     return true;
             }
         }
@@ -41,10 +40,10 @@ public class AddressBook {
     }
 
     private int getIndex(String phoneNumber) {
-        for (int i = 0; i< personsList.size(); i++) {
-            String firstName = personsList.get(i).phoneNumber;
+        for (int index = 0; index< personsList.size(); index++) {
+            String firstName = personsList.get(index).phoneNumber;
             if (firstName.equals(phoneNumber))
-                return i;
+                return index;
         }
         return -1;
     }
@@ -65,7 +64,7 @@ public class AddressBook {
     }
 
     public void delete(String addressBookName,String phoneNumber) {
-        if(phoneNumber == "")
+        if(addressBookName == "" ||  phoneNumber == "")
             throw new AddressBookException(AddressBookException.ExceptionType.ENTERED_EMPTY,"entered empty");
         personsList = fileOperations.loadDataFromFile(addressBookName);
         int index = this.getIndex(phoneNumber);
@@ -83,9 +82,9 @@ public class AddressBook {
     }
 
     public void print(String addressBookName) {
-        personsList = fileOperations.loadDataFromFile(addressBookName);
-        if(personsList.size() == 0)
+        if(fileOperations.isEmpty(addressBookName))
             throw new AddressBookException(AddressBookException.ExceptionType.BOOK_IS_EMPTY,"Book is empty");
+        personsList = fileOperations.loadDataFromFile(addressBookName);
         for (Person person: personsList) {
             System.out.println(person);
         }
