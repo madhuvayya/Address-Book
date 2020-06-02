@@ -71,4 +71,11 @@ public class FileOperations {
         File file = new File(this.getFilePath(fileName));
         file.delete();
     }
+
+    public int loadFiles() {
+        String directory = "./src/main/resources/";
+        File dir = new File(directory);
+        File[] files = dir.listFiles((dir1, name) -> name.endsWith(".json"));
+        return files.length;
+    }
 }

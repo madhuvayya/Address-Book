@@ -2,7 +2,6 @@ package com.addressbook;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,7 @@ public class AddressBookManager {
     FileOperations fileOperations;
     AddressBook addressBook;
     Map<String,AddressBook> addressBooks;
+    List<AddressBook> addressBookList;
 
     public AddressBookManager() {
         this.fileOperations = new FileOperations();
@@ -30,12 +30,20 @@ public class AddressBookManager {
         }
     }
 
-    public void add(String addressBookName,String firstName, String lastName, String address, String city, String state,
-                    String zip, String mobileNumber) throws AddressBookException {
-        addressBooks.get(addressBook).add(addressBookName,firstName,lastName,address,city,state,zip,mobileNumber);
-    }
-
     public void deleteAddressBook(String addressBook){
         fileOperations.deleteFile(addressBook);
+    }
+
+    public void openAddressBook(String addressBookName){
+        fileOperations.loadDataFromFile(addressBookName);
+    }
+
+    public int loadAddressBooks(){
+        return fileOperations.loadFiles();
+    }
+
+    public List<AddressBook> sortPersonDetails(String addressBook){
+
+        return addressBookList;
     }
 }
