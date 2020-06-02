@@ -45,4 +45,8 @@ public class AddressBookManager {
     public void printBookEntries(String addressBookName){
         addressBook.print(addressBookName);
     }
+
+    public void saveAs(String bookName,String newBookName) throws AddressBookException, IOException {
+        fileOperations.copy(bookName,newBookName);
+    }
 }

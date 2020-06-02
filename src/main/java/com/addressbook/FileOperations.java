@@ -65,4 +65,14 @@ public class FileOperations {
         File[] files = dir.listFiles((dir1, name) -> name.endsWith(".json"));
         return files.length;
     }
+
+    public void copy(String bookName, String newBookName) {
+        String sourceFilePath = this.getFilePath(bookName);
+        String destinationFilePath = this.getFilePath(newBookName);
+        try {
+            Files.copy(Paths.get(sourceFilePath),Paths.get(destinationFilePath));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
 }
