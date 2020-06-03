@@ -15,9 +15,6 @@ public class AddressBook {
 
     public void add(String addressBookName,String firstName, String lastName, String address, String city, String state, String zip,
                     String phoneNumber) {
-        if(firstName == "" || lastName == "" || address == "" || city == "" || state == ""|| zip == "" ||
-                phoneNumber == "")
-            throw new AddressBookException(AddressBookException.ExceptionType.ENTERED_EMPTY,"Entered Empty");
         int index = this.getIndex(phoneNumber);
         if(index != -1)
             throw new AddressBookException(AddressBookException.ExceptionType.EXISTING,"Entered already existing data");
@@ -49,8 +46,6 @@ public class AddressBook {
     }
 
     public void edit(String addressBookName,String oldPhoneNumber,String address,String city,String state,String zip,String newPhoneNumber) {
-        if(oldPhoneNumber == "" || address == "" || city == "" || state == ""|| zip == "" || newPhoneNumber == "")
-            throw new AddressBookException(AddressBookException.ExceptionType.ENTERED_EMPTY,"Entered Empty");
         personsList = fileOperations.loadDataFromFile(addressBookName);
         int index = this.getIndex(oldPhoneNumber);
         if(index == -1)
@@ -64,8 +59,6 @@ public class AddressBook {
     }
 
     public void delete(String addressBookName,String phoneNumber) {
-        if(addressBookName == "" ||  phoneNumber == "")
-            throw new AddressBookException(AddressBookException.ExceptionType.ENTERED_EMPTY,"entered empty");
         personsList = fileOperations.loadDataFromFile(addressBookName);
         int index = this.getIndex(phoneNumber);
         if(index == -1)

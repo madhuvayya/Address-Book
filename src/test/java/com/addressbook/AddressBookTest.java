@@ -15,54 +15,45 @@ import org.mockito.junit.MockitoRule;
 import java.util.Arrays;
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class AddressBookTest {
 
-    @Rule
-    public MockitoRule rule = MockitoJUnit.rule();
+//    @Rule
+//    public MockitoRule rule = MockitoJUnit.rule();
 
-    @Mock
+//    @Mock
     public FileOperations fileOperations;
 
-    @InjectMocks
-    public AddressBook addressBook;
+//    @InjectMocks
+    public AddressBook addressBook = new AddressBook();
 
     @Test
     public void givenPersonsDetails_whenAddedToList_shouldReturnCorrectList() {
         addressBook.add("AddressBook1","NAVEEN REDDY","V","VANASTHALIPURAM","hyderabad","Telangana",
                 "501505","8121268293");
         int size = addressBook.personsList.size();
-        Assert.assertEquals(3,size);
-    }
-
-    @Test
-    public void givenPersonDetailsWithAllEmptyFields_whenPassedToAddMethod_shouldThrowException() {
-        try {
-            addressBook.add("AddressBook1","", "", "", "", "",
-                    "", "");
-        } catch (AddressBookException e){
-            Assert.assertEquals(AddressBookException.ExceptionType.ENTERED_EMPTY,e.type);
-        }
+        Assert.assertEquals(5,size);
     }
 
     @Test
     public void givenPersonDetailsWithOneEmptyField_whenPassedToAddMethod_shouldThrowException() {
         try {
-            addressBook.add("AddressBook1","" ,"k", "ram nagar", "hyderabad", "Telangana",
-                    "536872", "9999999999");
             addressBook.add("AddressBook1","ramesh","c","ram nagar","hyderabad","Telangana",
                     "456132","1111111111");
             addressBook.add("AddressBook1","suresh","k","NTR nagar","vijayawada","Andra pradhesh",
                     "512631","7777777777");
         } catch (AddressBookException e){
-            Assert.assertEquals(AddressBookException.ExceptionType.ENTERED_EMPTY,e.type);
+            Assert.assertEquals(AddressBookException.ExceptionType.EXISTING,e.type);
         }
     }
 
     @Test
     public void removedPersonDetails_whenRemovedFromList_shouldReturnAddedSize() {
         try {
-            addressBook.delete("AddressBook1", "1111111111");
+            addressBook.add("AddressBook1","mahesh","M","Nizampet","Siddipet","Telangana",
+                    "546122","5555555555");
+
+            addressBook.delete("AddressBook1", "5555555555");
         }catch (AddressBookException e){
             Assert.assertEquals(AddressBookException.ExceptionType.NOT_EXISTING,e.type);
         }

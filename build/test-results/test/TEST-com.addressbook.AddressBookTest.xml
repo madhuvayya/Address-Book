@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.addressbook.AddressBookTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2020-06-03T02:40:56" hostname="MADHU" time="118.829">
+  <properties/>
+  <testcase name="removedPersonDetails_whenRemovedFromList_shouldReturnAddedSize" classname="com.addressbook.AddressBookTest" time="118.829">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
